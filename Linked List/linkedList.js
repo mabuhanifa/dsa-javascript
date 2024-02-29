@@ -96,6 +96,18 @@ class LinkedList {
     this.length++;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const previous = this.get(index - 1);
+    const temp = previous.next;
+    previous.next = temp.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
 }
 
 let myLinkedList = new LinkedList(4);
